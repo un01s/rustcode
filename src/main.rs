@@ -1,4 +1,16 @@
+use std::ascii::escape_default;
+use std::str;
+
 static BYTES: &[u8] = b"hello world!";
+
+fn show(bs: &[u8]) -> String {
+  let mut visible = String::new();
+  for &b in bs {
+    let part: Vec<u8> = escape_default(b).collect();
+    visible.push_str(str::from_utf8(&part).unwrap());
+  }
+  visible
+}
 
 fn read_one_byte(index: usize) -> u8 {
   BYTES[index]
@@ -49,4 +61,9 @@ fn main() {
   add_friend(&mut people, alice_id, bob_id);
   add_friend(&mut people, bob_id, alice_id);
   add_friend(&mut people, alice_id, alice_id);
+
+  // use show()
+  let bytes = b"foo\xE2\x98\x83bar\xFFbaz";
+  println!("{}", show(bytes));
+
 }
