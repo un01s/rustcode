@@ -95,6 +95,13 @@ $ node print.js "élément" | xxd -g 1
 
 Note that ```É``` is coded as ```c3 89```.
 
+```
+$ gcc upper.c -o upper
+$ ./upper "noël"
+U+006E U+006F U+00EB U+006C 
+noël
+```
+
 ## reference
 
 * [object soup](https://jacko.io/object_soup.html)
