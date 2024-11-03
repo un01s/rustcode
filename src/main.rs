@@ -41,6 +41,12 @@ fn add_friend(people: &mut Vec<Person>, this_id: usize, other_id: usize) {
 }
 
 fn main() {
+  let arg = std::env::args()
+        .skip(1)
+        .next()
+        .expect("should have one argument");
+  println!("{}", arg.to_uppercase());
+
   let string = "onestring";
   for c in string.chars() {
     print!("{}", c);

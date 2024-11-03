@@ -102,6 +102,17 @@ U+006E U+006F U+00EB U+006C
 noël
 ```
 
+Finally we run rust code:
+
+```
+$cargo run --quiet "noël"
+NOËL
+onestring
+Hello, world!
+101
+foo\xe2\x98\x83bar\xffbaz
+```
+
 ## reference
 
 * [object soup](https://jacko.io/object_soup.html)
