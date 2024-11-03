@@ -49,7 +49,33 @@ error: could not compile `rustcode` (bin "rustcode") due to 1 previous error
 
 Check the python version first.
 
+## rust printing
+
+### let's start from C code
+
+```print.c``` prints its arguments.
+
+```c
+$ cat print.c 
+#include <stdio.h> // for printf
+
+int main(int argc, char **argv) {
+  for (int i = 0; i < argc; i++) {
+    char *arg = argv[i];
+    printf("%s\n", arg);
+  }
+
+  return 0;
+}
+$ gcc print.c -o p
+$ ./p "ready" "go"
+./p
+ready
+go
+```
+
 ## reference
 
 * [object soup](https://jacko.io/object_soup.html)
 
+* [strings in rust](https://fasterthanli.me/articles/working-with-strings-in-rust)
