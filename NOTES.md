@@ -75,4 +75,9 @@ end 9
 end 10
 ```
 
+## breakdown futures
+
+The foo() was still an async function. But it is changed to a regular non-async function. It returns a ```Foo``` struct. It calls ```tokio::time::sleep```, but it does not use ```.await``` for Sleep future that sleep returns. Instead, it stores that future in the ```Foo``` struct.
+
+Implementing the ```Future``` trait is what makes ```Foo``` a future. 
 
