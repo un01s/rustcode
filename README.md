@@ -126,6 +126,8 @@ foo\xe2\x98\x83bar\xffbaz
 
 ## reference
 
+* [async in rust](https://jacko.io/async_futures.html)
+
 * [object soup](https://jacko.io/object_soup.html)
 
 * [strings in rust](https://fasterthanli.me/articles/working-with-strings-in-rust)
