@@ -44,3 +44,12 @@ error[E0133]: call to unsafe function `get_one` is unsafe and requires unsafe fu
 For more information about this error, try `rustc --explain E0133`.
 error: could not compile `rustcode` (bin "rustcode") due to 1 previous error
 ```
+
+## object soup
+
+Check the python version first.
+
+## reference
+
+* [object soup](https://jacko.io/object_soup.html)
+
