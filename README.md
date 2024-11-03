@@ -113,6 +113,17 @@ Hello, world!
 foo\xe2\x98\x83bar\xffbaz
 ```
 
+Another run:
+
+```
+$ cargo run --quiet -- $(printf "\\xC3\\xA9")
+É
+onestring
+Hello, world!
+101
+foo\xe2\x98\x83bar\xffbaz
+```
+
 ## reference
 
 * [object soup](https://jacko.io/object_soup.html)
