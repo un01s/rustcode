@@ -1,18 +1,20 @@
-use std::thread;
+use futures::future;
 use std::time::Duration;
 
-fn foo(n: u64) {
+async fn foo(n: u64) {
   println!("start {n}");
-  thread::sleep(Duration::from_secs(1));
+  tokio::time::sleep(Duration::from_secs(1)).await;
   println!("end {n}");
 }
 
-fn main() {
-  let mut thread_handles = Vec::new();
+#[tokio::main]
+async fn main() {
+  let mut futures = Vec::new();
   for n in 1..=10 {
-    thread_handles.push(thread::spawn(move || foo(n)));
+    futures.push(foo(n));
   }
-  for handle in thread_handles {
-    handle.join().unwrap();
-  }
+    
+  let joined_future = future::join_all(futures);
+  joined_future.await;
 }
+
