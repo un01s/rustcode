@@ -124,7 +124,13 @@ Hello, world!
 foo\xe2\x98\x83bar\xffbaz
 ```
 
+## code re-org
+
+Look at package, crates, modules and paths to re-org the code.
+
 ## reference
+
+* [split code](https://github.com/robertorojasr/rust-split-example)
 
 * [async in rust](https://jacko.io/async_futures.html)
 
