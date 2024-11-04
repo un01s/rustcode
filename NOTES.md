@@ -81,3 +81,11 @@ The foo() was still an async function. But it is changed to a regular non-async 
 
 Implementing the ```Future``` trait is what makes ```Foo``` a future. 
 
+Under the hood, async functions in rust are just regular functions that return a ```Future```. The ```Future``` trait is a type that:
+
+* can be polled
+* when it's polled, it might return ```Pending``` or ```Ready```
+* if it's pending, poll it again later
+* if it's ready, it reponds with a value. This is resolving.
+
+
