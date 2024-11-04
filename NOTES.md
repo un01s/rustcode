@@ -88,4 +88,22 @@ Under the hood, async functions in rust are just regular functions that return a
 * if it's pending, poll it again later
 * if it's ready, it reponds with a value. This is resolving.
 
+```rust
+use std::{future::Future, pin::Pin, task::Context}
+
+/// A future which returns a random number when it resolves.
+#[derive(Default)]
+struct RandFuture;
+
+impl Future for RandFuture {
+  // Every future has to specify what type of value it returns when it resolves.
+  // This particular future will return a u16.
+  type Output = u16;
+
+  // The Future trait has only one method, named poll
+  fn poll(mut self: Pin<&mut Self>, _cx: &mut Context) -> Poll<()> {
+    Poll::ready(rand::random())
+  }
+}
+```
 
