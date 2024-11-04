@@ -35,6 +35,14 @@ impl Future for Foo {
 
 #[tokio::main]
 async fn main() {
+  // a Box denotes that a type is owned and that it is allocated on the heap
+  // a reference denotes that you are borrowing the value from something else.
+  // 
+  let boxed: Box<i32> = Box::new(42);
+  let reference: &i32 = &boxed;
+  println!("reference {:?}", reference);
+
+  //
   let mut futures = Vec::new();
 
   for n in 1..=10 {

@@ -107,3 +107,7 @@ impl Future for RandFuture {
 }
 ```
 
+## Pin: self-reference is unsafe
+
+Pin exists to solve a very specific problem: self-referential datatypes, i.e. data structures that have pointers into themselves.
+
