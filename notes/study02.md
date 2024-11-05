@@ -16,8 +16,8 @@ rust is a static language. each value has its exact type.
 
 ## sequence types:
 
-* tuple
-* array
+* tuple: unit () and others like (i32,), (f32, String), (i32, Vec<String>, Option<bool>) 
+* array: [type;expression]
 * slice
 
 ## user-defined types
