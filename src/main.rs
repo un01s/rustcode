@@ -6,6 +6,17 @@ fn main() {
   let e = add(add(a, b), add(c, d));
 
   println!("sum of a, b, c and d is 0x{:x}", e);
+
+  // destructing assignment
+  let (a, mut b): (bool, bool) = (true, false);
+  println!("a = {:?}, b = {:?}", a, b);
+  b = true;
+  assert_eq!(a, b);
+
+  // _ representing a match, but we do not care about its specific value
+  let (x, y);
+  [x, .., y, _] = [1, 2, 3, 4, 5];
+  println!("x = {}, y = {}", x, y); 
 }
 
 // do not add ; after i+j
