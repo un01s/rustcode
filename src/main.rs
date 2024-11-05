@@ -5,7 +5,9 @@ fn main() {
   // x is copied to y on the stack instead of the heap
   let x = 5;
   let y = x;
+  let p = &x;
   println!("{}, {}", x, y);
+  println!("p = {}", p);
 
   // wrong  
   //let s1 = String::from("hello");
