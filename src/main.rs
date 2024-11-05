@@ -1,51 +1,28 @@
+// ownership: stack and heap, reference and borrowing
 fn main() {
-  let a = 10; // default i32, immutable
-  let b: i32 = 20; // explicit type i32, immutable
-  let mut c = 30i32; // value 3o type i32, mutable
-  let d = 30_i32;
-  let e = add(add(a, b), add(c, d));
+  // integer is a primitive type, both x amd y are on the stack
+  // copy: the size of the integer is known
+  // x is copied to y on the stack instead of the heap
+  let x = 5;
+  let y = x;
+  println!("{}, {}", x, y);
 
-  println!("sum of a, b, c and d is 0x{:x}", e);
-
-  // destructing assignment
-  let (a, mut b): (bool, bool) = (true, false);
-  println!("a = {:?}, b = {:?}", a, b);
-  b = true;
-  assert_eq!(a, b);
-
-  // _ representing a match, but we do not care about its specific value
-  let (x, y);
-  [x, .., y, _] = [1, 2, 3, 4, 5];
-  println!("x = {}, y = {}", x, y); 
-
-  // slice
-  let mut s = String::from("hello world");
-  let hello = &s[0..5];
-  let world = &s[6..11];
-  println!("{} + {}", hello, world);
+  // wrong  
+  //let s1 = String::from("hello");
+  //let s2 = s1; // ownership is moved from s1 to s2 in this case
+  //println!("{}, world!", s1); // error here! s1 is dropped!
+  // corrected
+  let s1 = String::from("hello");
+  let s2 = s1.clone(); // ownership is moved from s1 to s2 in this case
+  println!("{}, world!", s1); // error here! s1 is dropped!
   
-  let word = first_word(&s); // 5
-  s.clear(); // empty the string
-  println!("length of the first word: {}", word);
-}
+  // String is allocated on the heap
+  let mut s = String::from("hello");
+  s.push_str(", world!"); // push_str() 
+  println!("{}", s);
 
-// do not add ; after i+j
-// that makes {} returned instead an i32
-// "" for string
-// '' for char
-fn add(i: i32, j: i32) -> i32 {
-  // return is not in use here
-  i + j
-}
-
-fn first_word(s: &String) -> usize {
-  let bytes = s.as_bytes();
-
-  for (i, &item) in bytes.iter().enumerate() {
-    if item == b' ' {
-      return i;
-    }
-  }
-
-  s.len()
+  // reference with slice: it is borrowing for both a and b
+  let a: &str = "hello world";
+  let b = a;
+  println!("{}, {}", a, b);
 }
