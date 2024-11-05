@@ -1,54 +1,19 @@
-use futures::future;
-use std::future::Future;
-use std::pin::Pin;
-use std::task::{Context, Poll};
-use std::time::Duration;
+fn main() {
+  let a = 10; // default i32, immutable
+  let b: i32 = 20; // explicit type i32, immutable
+  let mut c = 30i32; // value 3o type i32, mutable
+  let d = 30_i32;
+  let e = add(add(a, b), add(c, d));
 
-fn foo(n: u64) -> Foo {
-  let started = false;
-  let duration = Duration::from_secs(1);
-  let sleep = Box::pin(tokio::time::sleep(duration));
-  Foo { n, started, sleep }
+  println!("sum of a, b, c and d is 0x{:x}", e);
 }
 
-struct Foo {
-  n: u64,
-  started: bool,
-  sleep: Pin<Box<tokio::time::Sleep>>,
+// do not add ; after i+j
+// that makes {} returned instead an i32
+// "" for string
+// '' for char
+fn add(i: i32, j: i32) -> i32 {
+  // return is not in use here
+  i + j
 }
 
-impl Future for Foo {
-  type Output = ();
-
-  fn poll(mut self: Pin<&mut Self>, context: &mut Context) -> Poll<()> {
-    if !self.started {
-      println!("start {}", self.n);
-      self.started = true;
-    }
-    if self.sleep.as_mut().poll(context).is_pending() {
-      return Poll::Pending;
-    }
-    println!("end {}", self.n);
-    Poll::Ready(())
-  }
-}
-
-#[tokio::main]
-async fn main() {
-  // a Box denotes that a type is owned and that it is allocated on the heap
-  // a reference denotes that you are borrowing the value from something else.
-  // 
-  let boxed: Box<i32> = Box::new(42);
-  let reference: &i32 = &boxed;
-  println!("reference {:?}", reference);
-
-  //
-  let mut futures = Vec::new();
-
-  for n in 1..=10 {
-    futures.push(foo(n));
-  }
-
-  let joined_future = future::join_all(futures);
-  joined_future.await;
-}
