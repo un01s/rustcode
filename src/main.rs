@@ -13,9 +13,12 @@ fn main() {
   //println!("{}, world!", s1); // error here! s1 is dropped!
   // corrected
   let s1 = String::from("hello");
-  let s2 = s1.clone(); // ownership is moved from s1 to s2 in this case
+  let s2 = s1.clone(); // deep copy
   println!("{}, world!", s1); // error here! s1 is dropped!
-  
+  let ptr1 = &*s1 as *const String; // can't get raw pointer here
+  let ptr2 = &*s2 as *const String; // can't get raw pointer here
+  println!("pointers to s1 = {}, s2 = {}", ptr1, ptr2);  
+
   // String is allocated on the heap
   let mut s = String::from("hello");
   s.push_str(", world!"); // push_str() 
