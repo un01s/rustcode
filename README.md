@@ -1,5 +1,7 @@
 # exercises in rust
 
+Async code is in the async branch. Study notes and code is in the study branch.
+
 ## setup
 
 ```
