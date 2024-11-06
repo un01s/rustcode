@@ -49,7 +49,7 @@ The first part is done by us when we call ```String::from```, its implementation
 However, the second part is different for different programming languages. Rust return the memory automatically once the variable that owns it goes out of scope. Basically when a variable goes out of scope, Rust calls a special function for us. That function is called ```drop()```, and it's where the author of ```String``` can put the code to return the memory. Rust calls ```drop``` automatically at the closing curly bracket.
 
 
-### references, the stacka and the heap
+### references, the stack and the heap
 
 stack: a region of memory where data is allocated for local variables and function arguments. this memory is managed automatically and is deallocated when a function completes.
 
@@ -77,3 +77,7 @@ A ```String``` is not a primitive type. It is made up of three parts:
 * a capacity
 
 This group of data is stored on the stack. The data itself is the memory on the heap.
+
+* At any given time, you can have either one mutable reference or any number of immutable references.
+* References must always be valid.
+
