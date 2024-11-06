@@ -48,6 +48,18 @@ $ ./target/debug/hello
 Hello, world!
 ```
 
+* rustc to build the code
+
+```
+$ cat main.rs
+fn main() {
+  println!("Hello, world!");
+}
+$ rustc main.rs
+./main
+Hello, world!
+```
+
 * notes: rust has the native support for UTF-8
 
 * notes: println! is a macro, take note of that ```!```
