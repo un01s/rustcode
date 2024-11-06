@@ -1,44 +1,31 @@
-/*
- * it's how to cast pointer to struct
- *
- */
+/* guessing game */
 
-use std::ptr::addr_of;
-
-#[allow(dead_code)]
-#[derive(Debug, Copy, Clone)]
-
-struct A<'text> {
-  foo: &'text str,
-  baz: i32,
-}
-
-fn ptr_to_struct(p: *const A) {
-  let b: A = unsafe { *p }; // main part of this example!
-  println!("{:#?}", b);
-}
-
-fn ptr_to_struct_2(p: usize) {
-  let b = unsafe { *(p as *const A) }; // main part of this example!
-  println!("{:#?}", b);
-}
+use std::io;
+use rand::Rng;
+use std::cmp::Ordering;
 
 fn main() {
-  let a = A {
-    foo: "Hello",
-    baz: 2000,
-  };
+  println!("Guess the number!");
 
-  ptr_to_struct(&a);
-  ptr_to_struct_2(&a as *const _ as usize);
+  let secret_num = rand::thread_rng().gen_range(1..=100);
 
-  // how to get the address of a variable?
-  let my_var = 100;
-  println!("address = {:#x}", (&my_var) as *const i32 as usize);
+  //println!("Please input your guess.");
 
-  let num = 32;
-  println!("Address: {:?}", addr_of!(num));
-  let borrow = &num;
-  println!("Address: {:?}", addr_of!(borrow));
+  let mut guess = String::new();
+
+  io::stdin()
+    .read_line(&mut guess)
+    .expect("Failed to read line");
+
+  let guess: u32 = guess.trim().parse().expect("Please enter a number");
+
+  println!("You guessed: {}", guess);
+
+  match guess.cmp(&secret_num) {
+    Ordering::Less => println!("Too small!"),
+    Ordering::Greater => println!("Too big!"),
+    Ordering::Equal => println!("You win!"),
+  }
+
+  println!("The secret: {}", secret_num);
 }
-
