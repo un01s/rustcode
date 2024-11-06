@@ -1,5 +1,9 @@
 # learn in rust
 
+* use ```rustup``` to install Rust
+* use ```cargo``` to build system and manage packages
+* use ```rustc``` for compiling and generating executable
+
 ## setup on mac
 
 * use rustup to install rust
