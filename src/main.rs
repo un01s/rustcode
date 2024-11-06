@@ -3,6 +3,8 @@
  *
  */
 
+use std::ptr::addr_of;
+
 #[allow(dead_code)]
 #[derive(Debug, Copy, Clone)]
 
@@ -29,5 +31,14 @@ fn main() {
 
   ptr_to_struct(&a);
   ptr_to_struct_2(&a as *const _ as usize);
+
+  // how to get the address of a variable?
+  let my_var = 100;
+  println!("address = {:#x}", (&my_var) as *const i32 as usize);
+
+  let num = 32;
+  println!("Address: {:?}", addr_of!(num));
+  let borrow = &num;
+  println!("Address: {:?}", addr_of!(borrow));
 }
 
