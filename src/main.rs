@@ -1,30 +1,33 @@
-// ownership: stack and heap, reference and borrowing
-fn main() {
-  // integer is a primitive type, both x amd y are on the stack
-  // copy: the size of the integer is known
-  // x is copied to y on the stack instead of the heap
-  let x = 5;
-  let y = x;
-  let p = &x;
-  println!("{}, {}", x, y);
-  println!("p = {}", p);
+/*
+ * it's how to cast pointer to struct
+ *
+ */
 
-  // wrong  
-  //let s1 = String::from("hello");
-  //let s2 = s1; // ownership is moved from s1 to s2 in this case
-  //println!("{}, world!", s1); // error here! s1 is dropped!
-  // corrected
-  let s1 = String::from("hello");
-  let s2 = s1.clone(); // deep copy
-  println!("{}, world!", s1); // error here! s1 is dropped!
+#[allow(dead_code)]
+#[derive(Debug, Copy, Clone)]
 
-  // String is allocated on the heap
-  let mut s = String::from("hello");
-  s.push_str(", world!"); // push_str() 
-  println!("{}", s);
-
-  // reference with slice: it is borrowing for both a and b
-  let a: &str = "hello world";
-  let b = a;
-  println!("{}, {}", a, b);
+struct A<'text> {
+  foo: &'text str,
+  baz: i32,
 }
+
+fn ptr_to_struct(p: *const A) {
+  let b: A = unsafe { *p }; // main part of this example!
+  println!("{:#?}", b);
+}
+
+fn ptr_to_struct_2(p: usize) {
+  let b = unsafe { *(p as *const A) }; // main part of this example!
+  println!("{:#?}", b);
+}
+
+fn main() {
+  let a = A {
+    foo: "Hello",
+    baz: 2000,
+  };
+
+  ptr_to_struct(&a);
+  ptr_to_struct_2(&a as *const _ as usize);
+}
+
