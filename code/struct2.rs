@@ -4,6 +4,9 @@
  *
  */
 
+// add a trait for debugging info
+#[derive(Debug)]
+
 struct Rectangle {
     width: u32,
     height: u32,
@@ -35,6 +38,9 @@ fn main() {
         width: 30,
         height: 50,
     };
+    println!("rect2 is {rect2:?}");
+    println!("rect2 is {rect2:#?}");
+
     // now just borrow rect2 to calculate the area
     // the main function still has the ownership of rect2
     println!(
