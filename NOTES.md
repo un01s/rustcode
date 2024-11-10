@@ -1,5 +1,13 @@
 # notes on important concepts in rust
 
+```
+$ rustup self update
+  rustup unchanged - 1.27.1
+$ rustup update stable
+  stable-aarch64-apple-darwin updated - rustc 1.82.0 (f6e511eec 2024-10-15) (from rustc 1.81.0 (eeb90cda1 2024-09-04))
+$ 
+```
+
 memory safety and efficiency
 
 ## ownership, references and borrowing
