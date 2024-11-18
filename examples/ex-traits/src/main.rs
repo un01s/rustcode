@@ -8,63 +8,72 @@
 
 #![allow(unused_variables)]
 
-// trait: define a type signature with no body
-trait HasArea {
-  fn area(&self) -> f64;
+struct Sheep { naked: bool, name: &'static str }
+
+trait Animal {
+    // Associated function signature; `Self` refers to the implementor type.
+    fn new(name: &'static str) -> Self;
+
+    // Method signatures; these will return a string.
+    fn name(&self) -> &'static str;
+    fn noise(&self) -> &'static str;
+
+    // Traits can provide default method definitions.
+    fn talk(&self) {
+        println!("{} says {}", self.name(), self.noise());
+    }
 }
 
-struct Circle {
-  x: f64, // center x
-  y: f64, // center y
-  radius: f64, // radius
+impl Sheep {
+    fn is_naked(&self) -> bool {
+        self.naked
+    }
+
+    fn shear(&mut self) {
+        if self.is_naked() {
+            // Implementor methods can use the implementor's trait methods.
+            println!("{} is already naked...", self.name());
+        } else {
+            println!("{} gets a haircut!", self.name);
+
+            self.naked = true;
+        }
+    }
 }
 
-// method for type Circle
-impl Circle {
-  fn size(&self) -> f64 {
-    std::f64::consts::PI * (self.radius * self.radius)
-  }
-}
+// Implement the `Animal` trait for `Sheep`.
+impl Animal for Sheep {
+    // `Self` is the implementor type: `Sheep`.
+    fn new(name: &'static str) -> Sheep {
+        Sheep { name: name, naked: false }
+    }
 
-// to implement a trait, 
-// use impl trait-name for tyep-name
-impl HasArea for Circle {
-  fn area(&self) -> f64 {
-    std::f64::consts::PI * (self.radius * self.radius)
-  }
-}
+    fn name(&self) -> &'static str {
+        self.name
+    }
 
-// another type
-struct Square {
-  x: f64,
-  y: f64,
-  side: f64,
-}
-
-impl HasArea for Square {
-  fn area(&self) -> f64 {
-    self.side * self.side
-  }
-}
-
-// <T: HasArea> means "any type that implements the HasArea trait
-fn print_area<T: HasArea>(shape: T) {
-  println!("This shape has an area of {}", shape.area());
+    fn noise(&self) -> &'static str {
+        if self.is_naked() {
+            "baaaaah?"
+        } else {
+            "baaaaah!"
+        }
+    }
+    
+    // Default trait methods can be overridden.
+    fn talk(&self) {
+        // For example, we can add some quiet contemplation.
+        println!("{} pauses briefly... {}", self.name, self.noise());
+    }
 }
 
 fn main() {
-  let c = Circle {
-    x: 0.0f64,
-    y: 0.0f64,
-    radius: 1.0f64,
-  };
+    // Type annotation is necessary in this case.
+    let mut dolly: Sheep = Animal::new("Dolly");
+    // TODO ^ Try removing the type annotations.
 
-  let s = Square {
-    x: 0.0f64,
-    y: 0.0f64,
-    side: 1.0f64,
-  };
-
-  print_area(c);
-  print_area(s);
+    dolly.talk();
+    dolly.shear();
+    dolly.talk();
 }
+
