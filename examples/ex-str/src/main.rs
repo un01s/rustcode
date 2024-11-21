@@ -27,12 +27,17 @@ fn print_me(msg: String) {
 // use a reference is more efficeint. 
 // A String type can be magically turned into a &str type using the Deref trait
 // and type coercion. this will make more sense with the following function.
+
 fn print_str(msg: &str) {
     println!("the message is {}", msg);
 }
 
 struct Person<'a> {
   name: &'a str,
+}
+
+fn say_hello(name: &str) -> String {
+  format!("hello {name}!)
 }
 
 fn main(){
@@ -58,7 +63,7 @@ fn main(){
   say_hello(&ss);// &String
 
   // str vs. String 
-  let msg = "hello world"; // this string literal is of type &str
+  let msg = "helloworld"; // this string literal is of type &str
   // expected `String`, found `&str`
   //print_me(msg);
   print_str(msg);
@@ -69,6 +74,8 @@ fn main(){
 
   // struct with &str
   // compiler error: missing lifetime specifier
-  let _person = Person{name: "thomas"};
+
+  // concat with format!
+  say_hello(&msg);
 }
 
