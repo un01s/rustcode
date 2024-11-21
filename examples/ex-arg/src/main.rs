@@ -1,4 +1,7 @@
 /*
+ * SO link:
+ * https://stackoverflow.com/questions/24158114/what-are-the-differences-between-rusts-string-and-str 
+ *
  * fat pointer
  *
  * Fat pointer generally refers to a pointer that stores some extra data 
