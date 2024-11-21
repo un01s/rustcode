@@ -1,7 +1,7 @@
 target/
 debug/
 
-examples/target/
+examples/*/target/
 
 Cargo.lock
 
