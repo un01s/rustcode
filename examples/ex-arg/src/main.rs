@@ -1,4 +1,7 @@
 /*
+ * rust design pattern
+ * https://rust-unofficial.github.io/patterns/idioms/coercion-arguments.html
+ * 
  * SO link:
  * https://stackoverflow.com/questions/24158114/what-are-the-differences-between-rusts-string-and-str 
  *
