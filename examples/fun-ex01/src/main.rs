@@ -33,6 +33,9 @@ fn main() {
 
   // use filter to do the same
   //println!("{:?}", (0..11).filter(|n| n%2==0).sum());
+  let numbers = vec![1, 2, 3, 4, 5, 6, 7];
+  let even_numbers: Vec<_> = numbers.iter().filter(|&x| x % 2 == 0).collect();
+  println!("Even numbers: {:?}", even_numbers);
 
   let week_days = vec!["Monday", 
                         "Tuesday", 
