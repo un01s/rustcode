@@ -69,7 +69,7 @@ fn main(){
   print_str(msg);
   let msg1 = "hello".to_string();
   print_me(msg1); // OK
-  let msg2 = String::from("hey");
+  let mut msg2 = String::from("hey2");
   print_str(&msg2); // OK too
 
   // struct with &str
