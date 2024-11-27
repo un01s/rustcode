@@ -6,6 +6,8 @@
  *
  */
 
+/*
+// this code works on RP2040
 #![no_std]
 #![no_main]
 //#![feature(type_alias_impl_trait)]
@@ -35,8 +37,9 @@ async fn main(_spawner: Spawner) {
         Timer::after(Duration::from_millis(950)).await;
     }
 }
+*/
 
-/*
+
 #![no_std]
 #![no_main]
 /// This example demonstrates how to access a given pin from more than one embassy task
@@ -56,10 +59,10 @@ use {defmt_rtt as _, panic_probe as _};
 type LedType = Mutex<ThreadModeRawMutex, Option<Output<'static>>>;
 static LED: LedType = Mutex::new(None);
 
-use rp2040_boot2;
-#[link_section = ".boot2"]
-#[used]
-pub static BOOT_LOADER: [u8; 256] = rp2040_boot2::BOOT_LOADER_W25Q080;
+//use rp2040_boot2;
+//#[link_section = ".boot2"]
+//#[used]
+//pub static BOOT_LOADER: [u8; 256] = rp2040_boot2::BOOT_LOADER_W25Q080;
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
@@ -91,4 +94,4 @@ async fn toggle_led(led: &'static LedType, delay: Duration) {
         ticker.next().await;
     }
 }
-*/
+
