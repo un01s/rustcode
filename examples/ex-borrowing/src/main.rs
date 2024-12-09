@@ -28,10 +28,11 @@ struct LinkedList {
 
 fn main() {
 
-  let s = String::from("Hello, world!");
+  let s = "hello"; // hard coded
 
   // Immutable borrow
-  let _len = s.len(); // s is still owned by the original variable
+  let len = s.len(); // s is still owned by the original variable
+  println!("{}", len);
 
   // Mutable borrow
   let mut s = String::from("Hello, world!");
@@ -47,4 +48,24 @@ fn main() {
   let new_node = Box::new(new_node);
 
   list.head = Some(new_node); // ownership is transferred
+
+  // both variable are on stack, because an integer size is fixed and known
+  let x = 5;
+  let y = x;
+
+  // the data is on the heap
+  let s1 = String::from("hello");
+  let s2 = s1; // at this point, s1 is no longer valid, s1 is moved into s2.
+  println!("{s2}");
+  
+  // deep copy as clone()
+  let s3 = s2.clone();
+  println!("s2={s2}, s3={s3}");
+
+  let size = calculate_length(&s2); // reference
+  println!("The length of '{s2}' is {size}.");
+}
+
+fn calculate_length(s: &String) -> usize {
+  s.len()
 }
