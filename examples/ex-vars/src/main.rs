@@ -13,10 +13,13 @@
  */
 
 fn some_function<K>(f: impl Fn(K) -> K, vs: Vec<K>) -> Vec<K> {
+  let mut index = 0;
+
   vs
   .into_iter()
-  .map(|(i, mut x)| {
-    for _ in 0..i { x = f(x); }
+  .map(|mut x| {
+    index += 1;
+    for _ in 1..index { x = f(x); }
     x
   }).collect()
 }
