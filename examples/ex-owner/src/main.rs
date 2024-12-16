@@ -6,7 +6,7 @@
  *
  */
 
-#[warn(unused_variables)]
+#![warn(unused_variables)]
 
 fn read(y: bool) {
   if y {
