@@ -3,7 +3,9 @@
  *
  * expression vs. statement
  * expressions return a value, and statements do not.
- * 
+ *
+ * function pointer
+ *  
  */
 
 fn print_number(x: i32) {
