@@ -1,5 +1,6 @@
 /*
  * primitive types are built-in types
+ *
  * boolean (bool, true, false)
  * char: a single Unicode value (cahr, 'x'), 4-byte instead of one byte
  * numeric types such as i32, f64, u8
@@ -26,12 +27,14 @@ fn main() {
   let h = '💕';
 
   println!("{}", h);
+  println!("size of {} is {}", h, size_of::<char>());
 
   let a = [1, 2, 3, 4, 5];
   let mut m = [2, 3, 4, 5, 6];
   let b = [0; 20]; // type [T; N], b: [i32; 20]
   let all = &a[..]; 
   let mid = &a[1..4];
+  println!("length of all is {}", all.len());
 
   let tuple = (1, 2, 3);
 
