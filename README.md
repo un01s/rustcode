@@ -132,6 +132,8 @@ Look at package, crates, modules and paths to re-org the code.
 
 ## reference
 
+* [rust book 1st ed.](https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/book/first-edition/README.html)
+
 * [split code](https://github.com/robertorojasr/rust-split-example)
 
 * [async in rust](https://jacko.io/async_futures.html)
