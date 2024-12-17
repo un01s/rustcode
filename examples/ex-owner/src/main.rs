@@ -34,4 +34,17 @@ fn main() {
   let m2 = String::from("world");
   greet(&m1, &m2);
   let _s = format!("{} {}", m1, m2);
+
+  // ownership
+  let m = 4;
+  let n = m; // stack, copy, primitive type
+  
+  let s1 = String::from("hello");
+  let s2 = s1; // s1 becomes invalid after this
+  let s3 = s2.clone();
+  println!("s2={}, s3={}", s2, s3);
+
+  let h1: &str = "hello";
+  let h2 = h1; // reference
+  println!("{} {}", h1, h2);
 }
