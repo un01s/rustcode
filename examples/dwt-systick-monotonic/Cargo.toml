@@ -1,0 +1,28 @@
+[package]
+name = "dwt-systick-monotonic"
+version = "1.1.0"
+authors = [
+  "The Real-Time Interrupt-driven Concurrency developers",
+  "Emil Fresk <emil.fresk@gmail.com>",
+  "Robert Jördens <rj@quartiq.de>",
+]
+categories = ["concurrency", "embedded", "no-std"]
+description = "RTIC Monotonic implemenation based on Systick and DWT"
+documentation = "https://docs.rs/dwt-systick-monotonic"
+repository = "https://github.com/rtic-rs/dwt-systick-monotonic"
+license = "MIT OR Apache-2.0"
+edition = "2021"
+
+[lib]
+name = "dwt_systick_monotonic"
+
+[features]
+extend = []
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.7.4"
+rtic-monotonic = "1.0.0"
+fugit = "0.3.0"
+cfg-if = "1.0"
