@@ -4,7 +4,19 @@
 //! 
 //! since Rust 1.27, dyn is introduced.
 //!
+//! Trait objects are the Rust implementation of dynamic dispatch. 
+//! Dynamic dispatch allows one particular implementation of a polymorphic 
+//! operation (trait methods) to be chosen at run time. Dynamic dispatch allows
+//! a very flexible architecture because we can swap function implementations 
+//! out at runtime. However, there is a small runtime cost associated with 
+//! dynamic dispatch.
+//!
+//! The variables/parameters which hold the trait objects are fat pointers 
+//! which consists of the following components:
 //! 
+//! pointer to the object in memory
+//! pointer to that object’s vtable, a vtable is a table with pointers which 
+//!     point to the actual method(s) implementation(s). 
 
 use std::{fmt::Display, sync::Arc};
 
