@@ -2,6 +2,7 @@ target/
 debug/
 
 examples/*/target/
+study/*/target/
 
 Cargo.lock
 
