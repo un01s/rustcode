@@ -47,4 +47,9 @@ fn main() {
   let h1: &str = "hello";
   let h2 = h1; // reference
   println!("{} {}", h1, h2);
+
+  let x = 5;
+  let y = &x; // reference
+  assert_eq!(5, x);
+  assert_eq!(5, *y); // de-ref
 }
