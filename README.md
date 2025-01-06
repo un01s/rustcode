@@ -3,8 +3,9 @@
 Async code is in the async branch. 
 Study notes and code is in the study branch.
 
-[effective rust](https://effective-rust.com/ffi.html)
-there are many examples to use Rust, including FFI, no_std, and so on.
+* [effective rust](https://effective-rust.com/ffi.html) there are many examples to use Rust, including FFI, no_std, and so on.
+
+* [use unsafe](https://www.michaelfbryan.com/rust-ffi-guide/print.html)
 
 ## setup
 
