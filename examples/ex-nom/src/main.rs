@@ -6,6 +6,8 @@ use nom::{
   Parser,
 };
 
+use nom::character::complete::alpha0;
+
 #[derive(Debug, PartialEq)]
 pub struct Color {
   pub red: u8,
@@ -38,9 +40,15 @@ pub fn do_nothing_parser(input: &str) -> IResult<&str, &str> {
   Ok((input, ""))
 }
 
+pub fn parser_alphabets(input: &str) -> IResult<&str, &str> {
+  alpha0(input)
+}
+
 fn main() {
   println!("{:?}", hex_color("#2F14DF"));
   println!("{:?}", do_nothing_parser(""));
+
+  println!("{:?}", parser_alphabets("abc123"));
 }
 
 #[test]
