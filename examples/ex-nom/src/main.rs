@@ -1,12 +1,13 @@
 use nom::{
   bytes::complete::{tag, take_while_m_n},
   combinator::map_res,
-  sequence::Tuple,
+  sequence::separated_pair,
   IResult,
   Parser,
 };
 
 use nom::character::complete::alpha0;
+use nom::character::complete::char;
 
 #[derive(Debug, PartialEq)]
 pub struct Color {
@@ -44,11 +45,25 @@ pub fn parser_alphabets(input: &str) -> IResult<&str, &str> {
   alpha0(input)
 }
 
+pub fn foo(s: &str) -> IResult<&str, &str> {
+  tag("foo")(s)
+}
+
+pub fn bar(s: &str) -> IResult<&str, &str> {
+  tag("bar")(s)
+}
+
+pub fn foo_bar(s: &str) -> IResult<&str, (&str, &str)> {
+  separated_pair(foo, char(' '), bar).parse(s)
+}
+
 fn main() {
   println!("{:?}", hex_color("#2F14DF"));
   println!("{:?}", do_nothing_parser(""));
 
   println!("{:?}", parser_alphabets("abc123"));
+
+  println!("{:?}", foo("foo bar")); // try to match "foo", if found, return Ok((remainder, parsed_value))
 }
 
 #[test]
@@ -64,5 +79,27 @@ fn parse_color() {
       }
     ))
   );
+}
+
+#[test]
+fn parse_foo() {
+  assert_eq!(
+    foo("foo bar"),
+    Ok((
+      " bar",
+      "foo"
+    ))
+  );
+}
+
+#[test]
+fn parse_foo_err() {
+  assert!(foo("1234567").is_err());
+}
+
+#[test]
+fn parse_foo_bar() {
+  assert_eq!(foo_bar("foo bar"), Ok(("", ("foo", "bar"))));
+  assert!(foo_bar("1234567").is_err());
 }
 
